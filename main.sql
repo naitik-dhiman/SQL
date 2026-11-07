@@ -813,3 +813,38 @@
     UNION ALL SELECT 'order_items',  COUNT(*) FROM order_items
 
     UNION ALL SELECT 'payments',     COUNT(*) FROM payments;
+
+
+SELECT * FROM customers; 
+
+SELECT * FROM categories;
+
+INSERT INTO categories(
+    category_name , description 
+)
+VALUES 
+('Diary' , 'diary description '),
+('Tech' , 'Tech products'),
+('Gym' , 'Supplements');
+
+ 
+UPDATE products
+SET stock_quantity  = 50 
+WHERE product_id =  1 ; 
+
+
+UPDATE products 
+SET is_active = FALSE ; 
+
+
+UPDATE products 
+SET price = price + 100 ; 
+
+
+SELECT * FROM products;
+
+
+SELECT * FROM departments;
+
+DELETE FROM departments 
+WHERE department_id = 3 ;
