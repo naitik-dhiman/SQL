@@ -848,3 +848,46 @@ SELECT * FROM departments;
 
 DELETE FROM departments 
 WHERE department_id = 3 ;
+
+
+
+--  * is wildcard for column , "" for columns but for string we use this ''
+
+SELECT product_id 
+     , product_name AS p_name 
+FROM products ; 
+
+--  only for columns but for data we have to use filtering 
+
+SELECT country  FROM customers ; 
+SELECT DISTINCT country FROM customers ; 
+
+-- ! where for filtring of data and SELECT for column selection 
+SELECT * FROM products
+WHERE price > 200 ; -- use to filter data 
+
+
+--!  products having stock qty > 0 and price < 150 
+
+
+SELECT * FROM products
+WHERE stock_quantity > 0 AND price < 150 ; 
+
+--! give me products which are not active 
+SELECT * FROM products
+WHERE is_active = FALSE; 
+
+-- ! for boolean 
+SELECT * FROM products
+WHERE NOT is_active;  
+
+
+-- ! products having price > 120 and price < 200 
+
+SELECT * FROM products 
+WHERE price > 120 AND price < 200 ; 
+
+
+-- ! both are inclusive here 
+SELECT * FROM products 
+WHERE price BETWEEN 120 and 200 ; 
