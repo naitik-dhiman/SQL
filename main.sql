@@ -851,7 +851,7 @@ WHERE department_id = 3 ;
 
 
 
---  * is wildcard for column , "" for columns but for string we use this ''
+--  !  * is wildcard for column , "" for columns but for string we use this ''
 
 SELECT product_id 
      , product_name AS p_name 
@@ -862,7 +862,7 @@ FROM products ;
 SELECT country  FROM customers ; 
 SELECT DISTINCT country FROM customers ; 
 
--- ! where for filtring of data and SELECT for column selection 
+-- ! where for filtering of data and SELECT for column selection 
 SELECT * FROM products
 WHERE price > 200 ; -- use to filter data 
 
@@ -891,3 +891,84 @@ WHERE price > 120 AND price < 200 ;
 -- ! both are inclusive here 
 SELECT * FROM products 
 WHERE price BETWEEN 120 and 200 ; 
+
+
+SELECT * FROM categories; 
+
+-- !give me products from of electronics and books 
+SELECT * FROM products 
+WHERE category_id = 1 OR category_id = 3 OR category_id = 4 ; 
+
+
+
+SELECT * FROM products 
+WHERE category_id IN (1,3,4) ; 
+
+--  !give me product having product name starting with wireless 
+
+
+SELECT * FROM products ;
+
+
+INSERT INTO products 
+(product_name , price , stock_quantity , category_id ) 
+VALUES 
+('Wireless keyboard' , 100 , 20 , 1 ),
+('Wireless headphones' , 150  , 0 ,  1 );  
+
+SELECT * FROM products 
+WHERE product_name LIKE 'Wireless%' ; 
+--  %less kuch bhi left me but end me less 
+-- *Less* sare less wale item technically 
+
+
+-- !give customers who do not have phone numbers 
+
+SELECT * FROM customers 
+WHERE phone = NULL ; 
+
+-- !wrong 
+
+
+-- * correct is this 
+SELECT * FROM customers 
+WHERE phone IS  NULL ;
+
+SELECT * FROM customers 
+WHERE phone IS NOT  NULL ;
+
+
+SELECT 
+first_name ,
+last_name,
+COALESCE(phone , 'No phone number exists '),
+COALESCE('city' , 'No city ')
+ FROM customers;   
+
+
+--  ! give me products from cheapest to expensive order 
+
+SELECT * FROM products 
+ORDER BY price ASC 
+
+
+-- ! give me products from cheap to expensive for each category 
+SELECT * FROM products
+ORDER BY category_id DESC , price DESC ; 
+
+
+-- ! top 5 expensive products 
+SELECT * FROM products 
+ORDER BY price DESC 
+LIMIT 5 ; 
+
+
+-- ! pagination - total 33 page by page 5 
+SELECT * FROM products 
+ORDER BY product_id 
+LIMIT 5 
+OFFSET 0 ; 
+-- ! offset how many rows to skip 
+-- ! offset = page - 1 * limit used by backend 
+
+
