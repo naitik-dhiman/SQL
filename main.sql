@@ -972,3 +972,70 @@ OFFSET 0 ;
 -- ! offset = page - 1 * limit used by backend 
 
 
+
+
+-- ! give me all orders including employee details of the employee who processed that order , only include orders punched by employee 
+SELECT * FROM orders ; 
+-- * we have employee id only here but with join we can select all details of the employee 
+
+SELECT *
+FROM orders AS o
+INNER JOIN employees AS e
+ON e.emp_id = o.employee_id;
+
+-- ! by default inner join is executed 
+
+
+
+-- ! give me all orders and include employee details of employee who processed that order and if it is directly coming from customer keep  employee detail empty 
+
+SELECT *
+FROM orders AS o
+LEFT JOIN employees AS e
+ON e.emp_id = o.employee_id;
+
+-- ! conclusion 
+-- ! inner join is strict about that condition on which we join the both table must include columns having both condition true from both tables , but for left join keep the data from left table regardless of condition , same for right join 
+
+
+
+SELECT *
+FROM orders AS o
+RIGHT  JOIN employees AS e
+ON e.emp_id = o.employee_id;
+
+
+
+SELECT *
+FROM orders AS o
+FULL OUTER  JOIN employees AS e
+ON e.emp_id = o.employee_id;
+
+
+SELECT * 
+FROM departments 
+CROSS JOIN categories ; 
+
+
+-- ! business problem 
+--* SELECT * FROM t-shirt CROSS JOIN sizes ;  
+
+
+
+
+
+
+
+
+
+-- ! scenarios and some problem statement where we will use joins 
+
+-- !give me all customers who did not place any order 
+SELECT 
+     c.first_name ,
+     c.email ,
+     o.status ,
+     o.order_id 
+FROM customers as c
+LEFT JOIN orders as o ON o.customer_id = c.customer_id 
+WHERE o.status IS NULL  ; 
