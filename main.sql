@@ -895,7 +895,7 @@ WHERE price BETWEEN 120 and 200 ;
 
 SELECT * FROM categories; 
 
--- !give me products from of electronics and books 
+-- !give me products from  electronics and books 
 SELECT * FROM products 
 WHERE category_id = 1 OR category_id = 3 OR category_id = 4 ; 
 
@@ -1039,3 +1039,8 @@ SELECT
 FROM customers as c
 LEFT JOIN orders as o ON o.customer_id = c.customer_id 
 WHERE o.status IS NULL  ; 
+
+
+SELECT * FROM employees; 
+
+
