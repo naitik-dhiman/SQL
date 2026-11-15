@@ -1046,3 +1046,37 @@ SELECT * FROM employees;
 
 
 
+-- ! aggregate functions in SQL 
+
+-- ! total customers on our platform 
+SELECT COUNT(*) AS customer_count ,  
+COUNT (phone) AS customer_with_phone_number 
+FROM customers ; 
+-- * instead of getting all rows we get only count of the specific 
+SELECT COUNT (*) FROM customers ; 
+
+SELECT COUNT (DISTINCT country ) FROM customers ;
+
+
+-- ! total revenue across all orders till now 
+
+
+SELECT 
+order_item_id ,
+quantity ,
+unit_price ,
+quantity * unit_price AS total_selling_value 
+FROM order_items ; 
+
+-- * here it is a custom column 
+
+
+-- ! total revenue 
+SELECT SUM(quantity * unit_price ) FROM order_items ; 
+
+
+-- !give average price of product across all products 
+SELECT ROUND(AVG (price))  AS average_price  FROM products ; 
+
+-- ! give me min and price across all products 
+SELECT MIN(price) AS minimum_price , MAX(price) as maximum_price from products ;    
