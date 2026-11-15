@@ -1044,3 +1044,5 @@ WHERE o.status IS NULL  ;
 SELECT * FROM employees; 
 
 
+
+
