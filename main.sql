@@ -1080,3 +1080,33 @@ SELECT ROUND(AVG (price))  AS average_price  FROM products ;
 
 -- ! give me min and price across all products 
 SELECT MIN(price) AS minimum_price , MAX(price) as maximum_price from products ;    
+
+
+SELECT * FROM products ; 
+
+-- ! product  count 
+SELECT COUNT (*) FROM products ; 
+
+-- ! total number of products in each category 
+SELECT category_id 
+COUNT (*) FROM products 
+GROUP BY category_id ; 
+-- *  har ek category me kitne product hai 
+
+
+
+-- !give me total number of active and inactive products in each category 
+SELECT category_id , is_active ,   
+COUNT (*) FROM products 
+GROUP BY category_id , is_active  ; 
+
+
+
+-- ! total number of products in each category 
+-- ! include category name in the result 
+SELECT p.category_id , 
+       c.category_name , 
+COUNT (*) FROM products as p 
+LEFT JOIN categories as c ON c.category_id = p.category_id 
+GROUP BY p.category_id , c.category_id ; 
+-- *  har ek category me kitne product hai 
