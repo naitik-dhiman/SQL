@@ -1110,3 +1110,55 @@ COUNT (*) FROM products as p
 LEFT JOIN categories as c ON c.category_id = p.category_id 
 GROUP BY p.category_id , c.category_id ; 
 -- *  har ek category me kitne product hai 
+
+
+-- ! total no  of products in each category on basis of category id 
+SELECT category_id , COUNT (*) 
+FROM products 
+GROUP BY category_id ; 
+
+
+-- !give me total number of active and inactive products in each category 
+SELECT category_id , is_active ,   
+COUNT (*) FROM products 
+GROUP BY category_id , is_active  ; 
+
+-- ! total number of products in each category , and give categories having > 5 products we can not use where clause bcoz it is used on actual table and this is reduced version of table so that we use having here 
+SELECT category_id , 
+COUNT (*) FROM products 
+GROUP BY category_id 
+HAVING COUNT(*) > 3 ; 
+
+-- * adding a filter on top of aggregated function on category level 
+
+
+-- !find departments having more than 1 employee where their combined salary of whole department exceeds 2 lakh rupees . 
+
+SELECT * FROM employees ;  
+
+-- * we have to filter on count so we use having here 
+SELECT 
+department_id , 
+COUNT (*), 
+SUM(salary) as total_dept_salary 
+FROM employees 
+GROUP BY department_id
+HAVING COUNT (*) > 1 AND SUM(salary)> 109000 ; 
+
+
+
+
+
+-- !find departments having more than 1 employee where their combined salary of whole department exceeds 2 lakh rupees managed employee . 
+
+SELECT * FROM employees ;  
+
+-- * we have to filter on count so we use having here 
+SELECT 
+department_id , 
+COUNT (*), 
+SUM(salary) as total_dept_salary 
+FROM employees 
+WHERE manager_id IS NOT NULL 
+GROUP BY department_id
+HAVING COUNT (*) > 1 AND SUM(salary)> 109000 ; 
